@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Checkout Berhasil</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <strong>Checkout Berhasil</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="my-5 text-center mb-3">
+                            <i class="text-success fas fa-check-circle fa-10x"></i>
+                        </div>
+                        <p class="alert alert-success text-center font-weight-bold">Terima kasih! Pesanan Anda akan segera diproses.</p>
+
+                        <h5 class="mb-3">Invoice : <?= $content->invoice ?></h5>
+                        <div class="row">
+                            <div class="col">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Total Belanja</td>
+                                            <td class="text-right">Rp <?= number_format($content->total, 0, ',', '.') ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ongkos Kirim</td>
+                                            <td class="text-right">Rp <?= number_format($content->cost_courier, 0, ',', '.') ?></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot">
+                                        <tr>
+                                            <td class="font-weight-bold">Total Pembayaran</td>
+                                            <td class="font-weight-bold text-right">Rp <?= number_format($content->total + $content->cost_courier, 0, ',', '.') ?></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
+                        <p style="text-align: justify;"><strong>Silahkan melakukan pembayaran sesuai total bayar di atas dan transfer pada salah satu rekening di bawah ini.</strong></p>
+
+                        <ul class="bank-list">
+                            <li><img src="<?= base_url("assets/img/logo_bca.png") ?>" alt="BCA" class="img-fluid" width="75px" /><strong>Bank Central Asia (BCA) 5139742685</strong> a/n NOMADENSTUFF</li>
+                            <li><img src="<?= base_url("assets/img/logo_bri.png") ?>" alt="BRI" class="img-fluid" width="75px" /><strong>Bank Rakyat Indonesia (BRI) 196214652186437</strong> a/n NOMADENSTUFF</li>
+                            <li><img src="<?= base_url("assets/img/logo_bni.png") ?>" alt="BNI" class="img-fluid" width="75px" /><strong>Bank Negara Indonesia (BNI) 7982562143</strong> a/n NOMADENSTUFF</li>
+                            <li><img src="<?= base_url("assets/img/logo_bsi.png") ?>" alt="BSI" class="img-fluid" width="75px" /><strong>Bank Syariah Indonesia (BSI) 652146347895214</strong> a/n NOMADENSTUFF</li>
+                            <li><img src="<?= base_url("assets/img/logo_mandiri.png") ?>" alt="Mandiri" class="img-fluid" width="75px" /><strong>Bank Mandiri 456321789532164</strong> a/n NOMADENSTUFF</li>
+                        </ul>
+
+                        <p>Jika sudah mentransfer, silahkan lakukan konfirmasi pembayaran <a href="<?= base_url("/myorder/detail/$content->invoice") ?>">klik disini</a>!</p>
+                        
+                        <a href="<?= base_url("/myorder/detail/$content->invoice") ?>" class="btn btn-success btn-block font-weight-bold">Lakukan Pembayaran</a>
+                        <a href="<?= base_url('/') ?>" class="btn btn-secondary btn-block font-weight-bold">Kembali Ke Beranda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
