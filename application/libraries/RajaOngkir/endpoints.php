@@ -7,12 +7,14 @@
  */
 require_once 'restclient.php';
 
-class Endpoints {
+class Endpoints
+{
 
     private $api_key;
     private $account_type;
 
-    public function __construct($api_key, $account_type) {
+    public function __construct($api_key, $account_type)
+    {
         $this->api_key = $api_key;
         $this->account_type = $account_type;
     }
@@ -22,7 +24,8 @@ class Endpoints {
      * @param integer $province_id ID propinsi, jika NULL tampilkan semua propinsi
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
-    function province($province_id = NULL) {
+    function province($province_id = NULL)
+    {
         $params = (is_null($province_id)) ? array() : array('id' => $province_id);
         $rest_client = new RESTClient($this->api_key, 'province', $this->account_type);
         return $rest_client->get($params);
@@ -34,7 +37,8 @@ class Endpoints {
      * @param integer $city_id ID kota, jika ID propinsi dan kota NULL maka tampilkan semua kota
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
-    function city($province_id = NULL, $city_id = NULL) {
+    function city($province_id = NULL, $city_id = NULL)
+    {
         $params = (is_null($province_id)) ? array() : array('province' => $province_id);
         if (!is_null($city_id)) {
             $params['id'] = $city_id;
@@ -51,7 +55,8 @@ class Endpoints {
      * @param string $courier Kode kurir
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
-    function cost($origin, $destination, $weight, $courier) {
+    function cost($origin, $destination, $weight, $courier)
+    {
         $params = array(
             'origin' => $origin,
             'destination' => $destination,
@@ -69,7 +74,8 @@ class Endpoints {
      * @param integer $city_id ID kota, jika ID propinsi dan ID kota NULL maka tampilkan semua kota
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
-    function internationalOrigin($province_id = NULL, $city_id = NULL) {
+    function internationalOrigin($province_id = NULL, $city_id = NULL)
+    {
         $params = (is_null($province_id)) ? array() : array('province' => $province_id);
         if (!is_null($city_id)) {
             $params['id'] = $city_id;
@@ -84,7 +90,8 @@ class Endpoints {
      * @param integer ID negara, jika kosong maka akan menampilkan semua negara
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
-    function internationalDestination($country_id = NULL) {
+    function internationalDestination($country_id = NULL)
+    {
         $params = (is_null($country_id)) ? array() : array('id' => $country_id);
         $rest_client = new RESTClient($this->api_key, 'internationalDestination', $this->account_type);
         return $rest_client->get($params);
@@ -99,7 +106,8 @@ class Endpoints {
      * @param string Kode kurir
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
-    function internationalCost($origin, $destination, $weight, $courier) {
+    function internationalCost($origin, $destination, $weight, $courier)
+    {
         $params = array(
             'origin' => $origin,
             'destination' => $destination,
@@ -115,7 +123,8 @@ class Endpoints {
      * 
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
-    function currency() {
+    function currency()
+    {
         $rest_client = new RESTClient($this->api_key, 'currency', $this->account_type);
         return $rest_client->get(array());
     }
@@ -127,7 +136,8 @@ class Endpoints {
      * @param string Kode kurir
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
-    function waybill($waybill_number, $courier) {
+    function waybill($waybill_number, $courier)
+    {
         $params = array(
             'waybill' => $waybill_number,
             'courier' => $courier
@@ -135,5 +145,4 @@ class Endpoints {
         $rest_client = new RESTClient($this->api_key, 'waybill', $this->account_type);
         return $rest_client->post($params);
     }
-
 }
